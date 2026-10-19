@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Fun Zone: playful math, memory, color, spelling and counting games for kids.">
+  <meta name="theme-color" content="#f6f5ff">
+  <title>Fun Zone – Learn & Play</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='26' fill='%237c5cff'/%3E%3Ctext x='50' y='70' font-size='60' text-anchor='middle'%3E⭐%3C/text%3E%3C/svg%3E">
+
+  <script>
+    /* Apply saved theme before first paint to avoid a flash */
+    try {
+      var d = JSON.parse(localStorage.getItem('funzone_v2') || '{}');
+      var t = d.theme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/games.css">
+</head>
+<body>
+
+  <!-- Icon sprite -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></symbol>
+    <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></symbol>
+    <symbol id="i-type" viewBox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></symbol>
+    <symbol id="i-hash" viewBox="0 0 24 24"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></symbol>
+    <symbol id="i-volume" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></symbol>
+    <symbol id="i-volume-x" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+    <symbol id="i-skip" viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></symbol>
+    <symbol id="i-undo" viewBox="0 0 24 24"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="app">
+
+    <aside class="sidebar">
+      <a class="brand" href="#home" aria-label="Fun Zone home">
+        <span class="brand-mark"><svg class="icon icon-fill"><use href="#i-star"/></svg></span>
+        <span>Fun Zone</span>
+      </a>
+
+      <nav class="nav" aria-label="Main">
+        <a class="nav-link" href="#home" data-route="home" data-accent="violet">
+          <span class="nav-icon"><svg class="icon"><use href="#i-home"/></svg></span><span class="nav-label">Home</span>
+        </a>
+        <a class="nav-link" href="#math" data-route="math" data-accent="violet">
+          <span class="nav-icon"><svg class="icon"><use href="#i-plus"/></svg></span><span class="nav-label">Math Pop</span>
+        </a>
+        <a class="nav-link" href="#memory" data-route="memory" data-accent="pink">
+          <span class="nav-icon"><svg class="icon"><use href="#i-grid"/></svg></span><span class="nav-label">Memory</span>
+        </a>
+        <a class="nav-link" href="#color" data-route="color" data-accent="amber">
+          <span class="nav-icon"><svg class="icon"><use href="#i-drop"/></svg></span><span class="nav-label">Color Lab</span>
+        </a>
+        <a class="nav-link" href="#spell" data-route="spell" data-accent="green">
+          <span class="nav-icon"><svg class="icon"><use href="#i-type"/></svg></span><span class="nav-label">Spell It</span>
+        </a>
+        <a class="nav-link" href="#count" data-route="count" data-accent="sky">
+          <span class="nav-icon"><svg class="icon"><use href="#i-hash"/></svg></span><span class="nav-label">Count It</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-foot">
+        <button class="link-btn" id="resetProgress" type="button">Reset my progress</button>
+      </div>
+    </aside>
+
+    <div class="content">
+
+      <header class="topbar">
+        <a class="mobile-brand" href="#home">
+          <span class="brand-mark"><svg class="icon icon-fill"><use href="#i-star"/></svg></span>
+          <span>Fun Zone</span>
+        </a>
+        <div class="topbar-spacer"></div>
+
+        <div class="level" title="Earn stars to level up">
+          <span class="level-label">Level <b id="levelNum">1</b></span>
+          <div class="xp" role="progressbar" aria-label="Progress to next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <span id="xpFill"></span>
+          </div>
+        </div>
+
+        <div class="chip chip-stars" id="starsChip" aria-live="polite">
+          <svg class="icon icon-fill"><use href="#i-star"/></svg>
+          <span id="starCount">0</span>
+        </div>
+
+        <button class="icon-btn" id="muteBtn" type="button" aria-label="Toggle sound">
+          <svg class="icon"><use id="muteIcon" href="#i-volume"/></svg>
+        </button>
+        <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle light and dark theme">
+          <svg class="icon"><use id="themeIcon" href="#i-moon"/></svg>
+        </button>
+      </header>
+
+      <main id="main" tabindex="-1">
+
+        <!-- HOME -->
+        <section class="view" id="view-home" data-title="Home">
+          <div class="hero">
+            <div class="hero-text">
+              <p class="eyebrow">Learn · Play · Grow</p>
+              <h1>Ready to play, <span class="hero-accent">explorer?</span></h1>
+              <p>Pick a game, earn stars, level up and unlock shiny badges along the way.</p>
+              <a class="btn btn-light" href="#math">Start with Math Pop <svg class="icon"><use href="#i-arrow"/></svg></a>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+              <span class="orb orb-1">🚀</span>
+              <span class="orb orb-2">🌈</span>
+              <span class="orb orb-3">🧩</span>
+            </div>
+          </div>
+
+          <h2 class="section-title">Choose a game</h2>
+          <div class="game-grid">
+            <a class="game-card" href="#math" data-accent="violet">
+              <div class="card-art" aria-hidden="true">🧮</div>
+              <div class="card-body">
+                <h3>Math Pop</h3>
+                <p>Add, subtract and multiply at your own pace. Build a streak for bonus stars.</p>
+                <span class="card-cta">Play <svg class="icon"><use href="#i-arrow"/></svg></span>
+              </div>
+            </a>
+            <a class="game-card" href="#memory" data-accent="pink">
+              <div class="card-art" aria-hidden="true">🃏</div>
+              <div class="card-body">
+                <h3>Memory Match</h3>
+                <p>Flip the cards and find every pair in as few moves as you can.</p>
+                <span class="card-cta">Play <svg class="icon"><use href="#i-arrow"/></svg></span>
+              </div>
+            </a>
+            <a class="game-card" href="#color" data-accent="amber">
+              <div class="card-art" aria-hidden="true">🎨</div>
+              <div class="card-body">
+                <h3>Color Lab</h3>
+                <p>Mix red, green and blue light and discover how colors are made.</p>
+                <span class="card-cta">Explore <svg class="icon"><use href="#i-arrow"/></svg></span>
+              </div>
+            </a>
+            <a class="game-card" href="#spell" data-accent="green">
+              <div class="card-art" aria-hidden="true">🔤</div>
+              <div class="card-body">
+                <h3>Spell It</h3>
+                <p>Look at the picture, tap the letters in order and hear the word.</p>
+                <span class="card-cta">Play <svg class="icon"><use href="#i-arrow"/></svg></span>
+              </div>
+            </a>
+            <a class="game-card" href="#count" data-accent="sky">
+              <div class="card-art" aria-hidden="true">🔢</div>
+              <div class="card-body">
+                <h3>Count It</h3>
+                <p>Tap each object to count it, then pick how many you found.</p>
+                <span class="card-cta">Play <svg class="icon"><use href="#i-arrow"/></svg></span>
+              </div>
+            </a>
+          </div>
+
+          <div class="section-head">
+            <h2 class="section-title">Your badges</h2>
+            <span class="badge-count" id="badgeCount">0 / 0</span>
+          </div>
+          <div class="badge-grid" id="badgeGrid"></div>
+        </section>
+
+        <!-- MATH -->
+        <section class="view" id="view-math" data-title="Math Pop" data-accent="violet">
+          <div class="game-head">
+            <span class="game-icon"><svg class="icon"><use href="#i-plus"/></svg></span>
+            <div>
+              <h1>Math Pop</h1>
+              <p>Pick the right answer to win a star.</p>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="controls">
+              <div class="segmented" id="opRow" role="group" aria-label="Operation">
+                <button type="button" data-op="+" aria-pressed="true">Add</button>
+                <button type="button" data-op="-" aria-pressed="false">Subtract</button>
+                <button type="button" data-op="×" aria-pressed="false">Multiply</button>
+              </div>
+              <div class="segmented" id="lvlRow" role="group" aria-label="Level">
+                <button type="button" data-lvl="1" aria-pressed="true">Easy</button>
+                <button type="button" data-lvl="2" aria-pressed="false">Medium</button>
+                <button type="button" data-lvl="3" aria-pressed="false">Hard</button>
+              </div>
+            </div>
+            <div class="stats">
+              <div class="stat">Streak <span id="streak">0</span></div>
+              <div class="stat">Solved <span id="solved">0</span></div>
+            </div>
+            <div class="question" id="question" aria-live="polite">2 + 3</div>
+            <div class="answers" id="answers"></div>
+            <div class="feedback" id="mathFb" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <!-- MEMORY -->
+        <section class="view" id="view-memory" data-title="Memory Match" data-accent="pink">
+          <div class="game-head">
+            <span class="game-icon"><svg class="icon"><use href="#i-grid"/></svg></span>
+            <div>
+              <h1>Memory Match</h1>
+              <p>Flip two cards at a time and find all the pairs.</p>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="stats">
+              <div class="stat">Moves <span id="moves">0</span></div>
+              <div class="stat">Pairs <span id="pairs">0</span>/8</div>
+              <div class="stat">Best <span id="best">–</span></div>
+            </div>
+            <div class="grid" id="memGrid"></div>
+            <div class="feedback" id="memFb" aria-live="polite"></div>
+            <div class="actions">
+              <button class="btn btn-primary" id="memReset" type="button"><svg class="icon"><use href="#i-refresh"/></svg> New game</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- COLOR -->
+        <section class="view" id="view-color" data-title="Color Lab" data-accent="amber">
+          <div class="game-head">
+            <span class="game-icon"><svg class="icon"><use href="#i-drop"/></svg></span>
+            <div>
+              <h1>Color Lab</h1>
+              <p>Slide to mix light, or try a magic mix.</p>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="swatch" id="swatch"><span class="hex" id="hexCode">#808080</span></div>
+            <div class="color-name" id="colorName" aria-live="polite">Gray</div>
+            <div class="slider-row"><label for="r">Red</label><input type="range" id="r" min="0" max="255" value="128"></div>
+            <div class="slider-row"><label for="g">Green</label><input type="range" id="g" min="0" max="255" value="128"></div>
+            <div class="slider-row"><label for="b">Blue</label><input type="range" id="b" min="0" max="255" value="128"></div>
+            <h2 class="mix-title">Magic mixes</h2>
+            <div class="mix-row" id="mixRow"></div>
+          </div>
+        </section>
+
+        <!-- SPELL -->
+        <section class="view" id="view-spell" data-title="Spell It" data-accent="green">
+          <div class="game-head">
+            <span class="game-icon"><svg class="icon"><use href="#i-type"/></svg></span>
+            <div>
+              <h1>Spell It</h1>
+              <p>Tap the letters in the right order.</p>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="stats">
+              <div class="stat">Words spelled <span id="wordsCount">0</span></div>
+            </div>
+            <p class="pic" id="pic" aria-hidden="true">🐶</p>
+            <div class="slots" id="slots" aria-label="Your answer"></div>
+            <div class="letters" id="letters"></div>
+            <div class="actions">
+              <button class="btn btn-primary" id="sayBtn" type="button"><svg class="icon"><use href="#i-volume"/></svg> Say it</button>
+              <button class="btn btn-soft" id="clearBtn" type="button"><svg class="icon"><use href="#i-undo"/></svg> Clear</button>
+              <button class="btn btn-soft" id="skipBtn" type="button"><svg class="icon"><use href="#i-skip"/></svg> Next</button>
+            </div>
+            <div class="feedback" id="spellFb" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <!-- COUNT -->
+        <section class="view" id="view-count" data-title="Count It" data-accent="sky">
+          <div class="game-head">
+            <span class="game-icon"><svg class="icon"><use href="#i-hash"/></svg></span>
+            <div>
+              <h1>Count It</h1>
+              <p>Tap each object to count it, then choose the number.</p>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="controls">
+              <div class="segmented" id="countLvlRow" role="group" aria-label="Level">
+                <button type="button" data-lvl="1" aria-pressed="true">Easy</button>
+                <button type="button" data-lvl="2" aria-pressed="false">Medium</button>
+                <button type="button" data-lvl="3" aria-pressed="false">Hard</button>
+              </div>
+            </div>
+            <div class="stats">
+              <div class="stat">Counted <span id="countSolved">0</span></div>
+            </div>
+            <p class="count-prompt" id="countPrompt">How many apples?</p>
+            <div class="count-board" id="countBoard"></div>
+            <div class="answers" id="countAnswers"></div>
+            <div class="feedback" id="countFb" aria-live="polite"></div>
+          </div>
+        </section>
+
+      </main>
+
+      <footer class="site-footer">
+        <p>Made with care for curious kids.</p>
+      </footer>
+    </div>
+  </div>
+
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <script src="js/store.js" defer></script>
+  <script src="js/utils.js" defer></script>
+  <script src="js/audio.js" defer></script>
+  <script src="js/progress.js" defer></script>
+  <script src="js/games/math.js" defer></script>
+  <script src="js/games/memory.js" defer></script>
+  <script src="js/games/color.js" defer></script>
+  <script src="js/games/spell.js" defer></script>
+  <script src="js/games/count.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>
