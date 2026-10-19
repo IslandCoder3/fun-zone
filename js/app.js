@@ -4,7 +4,7 @@
   var FunZone = window.FunZone = window.FunZone || {};
   var U = FunZone.util;
 
-  var ROUTES = ['home', 'math', 'memory', 'color', 'spell', 'count'];
+  var ROUTES = ['home', 'math', 'memory', 'color', 'spell', 'count', 'echo', 'pattern', 'shape', 'clock', 'odd'];
 
   /* ---------- Router (hash based, so the back button works) ---------- */
   function initRouter() {
@@ -16,6 +16,7 @@
     function go() {
       var id = (location.hash || '#home').slice(1);
       if (ROUTES.indexOf(id) === -1) id = 'home';
+      if (id !== 'home') FunZone.progress.visit(id);
 
       var title = 'Fun Zone';
       views.forEach(function (v) {

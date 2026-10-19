@@ -45,6 +45,11 @@
     <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
     <symbol id="i-skip" viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></symbol>
     <symbol id="i-undo" viewBox="0 0 24 24"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></symbol>
+    <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></symbol>
+    <symbol id="i-shape" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
   </svg>
 
   <a class="skip-link" href="#main">Skip to content</a>
@@ -75,6 +80,21 @@
         </a>
         <a class="nav-link" href="#count" data-route="count" data-accent="sky">
           <span class="nav-icon"><svg class="icon"><use href="#i-hash"/></svg></span><span class="nav-label">Count It</span>
+        </a>
+        <a class="nav-link" href="#echo" data-route="echo" data-accent="coral">
+          <span class="nav-icon"><svg class="icon"><use href="#i-music"/></svg></span><span class="nav-label">Echo</span>
+        </a>
+        <a class="nav-link" href="#pattern" data-route="pattern" data-accent="teal">
+          <span class="nav-icon"><svg class="icon"><use href="#i-layers"/></svg></span><span class="nav-label">Patterns</span>
+        </a>
+        <a class="nav-link" href="#shape" data-route="shape" data-accent="indigo">
+          <span class="nav-icon"><svg class="icon"><use href="#i-shape"/></svg></span><span class="nav-label">Shapes</span>
+        </a>
+        <a class="nav-link" href="#clock" data-route="clock" data-accent="lime">
+          <span class="nav-icon"><svg class="icon"><use href="#i-clock"/></svg></span><span class="nav-label">Clock</span>
+        </a>
+        <a class="nav-link" href="#odd" data-route="odd" data-accent="amber">
+          <span class="nav-icon"><svg class="icon"><use href="#i-search"/></svg></span><span class="nav-label">Odd One</span>
         </a>
       </nav>
 
@@ -169,6 +189,46 @@
               <div class="card-body">
                 <h3>Count It</h3>
                 <p>Tap each object to count it, then pick how many you found.</p>
+                <span class="card-cta">Play <svg class="icon"><use href="#i-arrow"/></svg></span>
+              </div>
+            </a>
+            <a class="game-card" href="#echo" data-accent="coral">
+              <div class="card-art" aria-hidden="true">🎵</div>
+              <div class="card-body">
+                <h3>Echo</h3>
+                <p>Watch the lights, listen to the notes and repeat the song. How long can you go?</p>
+                <span class="card-cta">Play <svg class="icon"><use href="#i-arrow"/></svg></span>
+              </div>
+            </a>
+            <a class="game-card" href="#pattern" data-accent="teal">
+              <div class="card-art" aria-hidden="true">🧩</div>
+              <div class="card-body">
+                <h3>Pattern Pals</h3>
+                <p>Spot the pattern and find the piece that comes next.</p>
+                <span class="card-cta">Play <svg class="icon"><use href="#i-arrow"/></svg></span>
+              </div>
+            </a>
+            <a class="game-card" href="#shape" data-accent="indigo">
+              <div class="card-art" aria-hidden="true">🔷</div>
+              <div class="card-body">
+                <h3>Shape Hunt</h3>
+                <p>Circles, stars, hearts and more. Can you find the right shape?</p>
+                <span class="card-cta">Play <svg class="icon"><use href="#i-arrow"/></svg></span>
+              </div>
+            </a>
+            <a class="game-card" href="#clock" data-accent="lime">
+              <div class="card-art" aria-hidden="true">⏰</div>
+              <div class="card-body">
+                <h3>Clock Time</h3>
+                <p>Read the clock hands and pick the right time.</p>
+                <span class="card-cta">Play <svg class="icon"><use href="#i-arrow"/></svg></span>
+              </div>
+            </a>
+            <a class="game-card" href="#odd" data-accent="amber">
+              <div class="card-art" aria-hidden="true">🔍</div>
+              <div class="card-body">
+                <h3>Odd One Out</h3>
+                <p>Four of these belong together. Which one does not?</p>
                 <span class="card-cta">Play <svg class="icon"><use href="#i-arrow"/></svg></span>
               </div>
             </a>
@@ -308,6 +368,138 @@
           </div>
         </section>
 
+        <!-- ECHO -->
+        <section class="view" id="view-echo" data-title="Echo" data-accent="coral">
+          <div class="game-head">
+            <span class="game-icon"><svg class="icon"><use href="#i-music"/></svg></span>
+            <div>
+              <h1>Echo</h1>
+              <p>Watch the lights, listen to the notes, then repeat them.</p>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="stats">
+              <div class="stat">Round <span id="echoRound">0</span></div>
+              <div class="stat">Best <span id="echoBest">–</span></div>
+            </div>
+            <div class="pads" id="echoPads">
+              <button class="pad" type="button" data-i="0" aria-label="Green pad"></button>
+              <button class="pad" type="button" data-i="1" aria-label="Pink pad"></button>
+              <button class="pad" type="button" data-i="2" aria-label="Yellow pad"></button>
+              <button class="pad" type="button" data-i="3" aria-label="Blue pad"></button>
+            </div>
+            <div class="feedback" id="echoFb" aria-live="polite">Press start to play.</div>
+            <div class="actions">
+              <button class="btn btn-primary" id="echoStart" type="button"><svg class="icon"><use href="#i-arrow"/></svg> <span id="echoStartLabel">Start</span></button>
+            </div>
+          </div>
+        </section>
+
+        <!-- PATTERN -->
+        <section class="view" id="view-pattern" data-title="Pattern Pals" data-accent="teal">
+          <div class="game-head">
+            <span class="game-icon"><svg class="icon"><use href="#i-layers"/></svg></span>
+            <div>
+              <h1>Pattern Pals</h1>
+              <p>Find the piece that comes next.</p>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="controls">
+              <div class="segmented" id="patLvlRow" role="group" aria-label="Level">
+                <button type="button" data-lvl="1" aria-pressed="true">Easy</button>
+                <button type="button" data-lvl="2" aria-pressed="false">Medium</button>
+                <button type="button" data-lvl="3" aria-pressed="false">Hard</button>
+              </div>
+            </div>
+            <div class="stats">
+              <div class="stat">Solved <span id="patSolved">0</span></div>
+            </div>
+            <div class="pattern-row" id="patRow"></div>
+            <div class="answers" id="patAnswers"></div>
+            <div class="feedback" id="patFb" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <!-- SHAPE -->
+        <section class="view" id="view-shape" data-title="Shape Hunt" data-accent="indigo">
+          <div class="game-head">
+            <span class="game-icon"><svg class="icon"><use href="#i-shape"/></svg></span>
+            <div>
+              <h1>Shape Hunt</h1>
+              <p>Tap the shape you are asked to find.</p>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="controls">
+              <div class="segmented" id="shapeLvlRow" role="group" aria-label="Level">
+                <button type="button" data-lvl="1" aria-pressed="true">Easy</button>
+                <button type="button" data-lvl="2" aria-pressed="false">Medium</button>
+                <button type="button" data-lvl="3" aria-pressed="false">Hard</button>
+              </div>
+            </div>
+            <div class="stats">
+              <div class="stat">Found <span id="shapeSolved">0</span></div>
+            </div>
+            <p class="count-prompt" id="shapePrompt">Find the circle</p>
+            <div class="shape-options" id="shapeOptions"></div>
+            <div class="feedback" id="shapeFb" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <!-- CLOCK -->
+        <section class="view" id="view-clock" data-title="Clock Time" data-accent="lime">
+          <div class="game-head">
+            <span class="game-icon"><svg class="icon"><use href="#i-clock"/></svg></span>
+            <div>
+              <h1>Clock Time</h1>
+              <p>Read the hands and pick the right time.</p>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="controls">
+              <div class="segmented" id="clockLvlRow" role="group" aria-label="Level">
+                <button type="button" data-lvl="1" aria-pressed="true">Easy</button>
+                <button type="button" data-lvl="2" aria-pressed="false">Medium</button>
+                <button type="button" data-lvl="3" aria-pressed="false">Hard</button>
+              </div>
+            </div>
+            <div class="stats">
+              <div class="stat">Solved <span id="clockSolved">0</span></div>
+            </div>
+            <svg class="clock" id="clockSvg" viewBox="0 0 200 200" role="img" aria-label="Analog clock"></svg>
+            <p class="count-prompt">What time is it?</p>
+            <div class="answers" id="clockAnswers"></div>
+            <div class="feedback" id="clockFb" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <!-- ODD ONE OUT -->
+        <section class="view" id="view-odd" data-title="Odd One Out" data-accent="amber">
+          <div class="game-head">
+            <span class="game-icon"><svg class="icon"><use href="#i-search"/></svg></span>
+            <div>
+              <h1>Odd One Out</h1>
+              <p>Most of these belong together. Tap the one that does not.</p>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="controls">
+              <div class="segmented" id="oddLvlRow" role="group" aria-label="Level">
+                <button type="button" data-lvl="1" aria-pressed="true">Easy</button>
+                <button type="button" data-lvl="2" aria-pressed="false">Medium</button>
+                <button type="button" data-lvl="3" aria-pressed="false">Hard</button>
+              </div>
+            </div>
+            <div class="stats">
+              <div class="stat">Spotted <span id="oddSolved">0</span></div>
+            </div>
+            <p class="count-prompt">Which one doesn't belong?</p>
+            <div class="odd-board" id="oddBoard"></div>
+            <div class="feedback" id="oddFb" aria-live="polite"></div>
+          </div>
+        </section>
+
       </main>
 
       <footer class="site-footer">
@@ -327,6 +519,11 @@
   <script src="js/games/color.js" defer></script>
   <script src="js/games/spell.js" defer></script>
   <script src="js/games/count.js" defer></script>
+  <script src="js/games/echo.js" defer></script>
+  <script src="js/games/pattern.js" defer></script>
+  <script src="js/games/shape.js" defer></script>
+  <script src="js/games/clock.js" defer></script>
+  <script src="js/games/odd.js" defer></script>
   <script src="js/app.js" defer></script>
 </body>
 </html>

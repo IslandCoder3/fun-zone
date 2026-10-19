@@ -266,3 +266,16 @@ main {
 @media (max-width: 420px) {
   .level { display: none; }
 }
+
+/* ---------- Many games: keep navigation usable ---------- */
+.sidebar { overflow-y: auto; scrollbar-width: thin; }
+.nav-link { padding: 6px 12px 6px 8px; }
+.nav-icon { width: 34px; height: 34px; }
+
+@media (max-width: 899px) {
+  .sidebar { overflow-y: visible; overflow-x: hidden; }
+  .nav { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav-link { flex: 0 0 auto; min-width: 68px; padding: 6px 4px; }
+  .nav-icon { width: 32px; height: 32px; }
+}

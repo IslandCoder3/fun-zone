@@ -59,6 +59,7 @@
     speak: speak,
     stopSpeaking: stopSpeaking,
     toggleMute: toggleMute,
+    tone: function (freq, dur) { beep(freq, dur || 0.3, 'sine'); },
     isMuted: function () { return muted; }
   };
 })();

@@ -256,3 +256,110 @@
   .count-item { width: 54px; height: 54px; font-size: 1.9rem; }
   .grid { gap: 8px; }
 }
+
+/* ---------- Echo ---------- */
+.pads {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 420px;
+  margin: 6px auto 0;
+}
+.pad {
+  aspect-ratio: 1.25;
+  border: 0;
+  border-radius: 28px;
+  background: var(--pc);
+  opacity: .5;
+  box-shadow: var(--shadow-sm);
+  transition: opacity .15s, transform .15s var(--ease), box-shadow .15s;
+}
+.pad[data-i="0"] { --pc: var(--green); }
+.pad[data-i="1"] { --pc: var(--pink); }
+.pad[data-i="2"] { --pc: var(--amber); }
+.pad[data-i="3"] { --pc: var(--sky); }
+.pad:hover { opacity: .75; }
+.pad:active { transform: scale(.97); }
+.pad.lit {
+  opacity: 1;
+  transform: scale(1.04);
+  box-shadow: 0 0 0 5px var(--surface), 0 0 34px 8px var(--pc);
+}
+
+/* ---------- Pattern Pals ---------- */
+.pattern-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 10px 0 26px; }
+.pat-item {
+  width: 62px;
+  height: 62px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: 2rem;
+  line-height: 1;
+  animation: rise .35s var(--ease) both;
+}
+.pat-item.blank {
+  border: 2px dashed var(--accent);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+.pat-item.filled { border: 2px solid var(--green); background: color-mix(in srgb, var(--green) 16%, var(--surface)); color: inherit; }
+.answers .answer.emoji { font-size: clamp(2rem, 8vw, 2.8rem); }
+
+/* ---------- Shape Hunt ---------- */
+.shape-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.shape-btn {
+  display: grid;
+  place-items: center;
+  padding: 14px;
+  border: 2px solid var(--border);
+  border-radius: 22px;
+  background: var(--surface-2);
+  transition: transform .15s var(--ease), border-color .2s, background-color .2s;
+}
+.shape-btn svg { width: 100%; max-width: 110px; height: auto; }
+.shape-btn:hover:not(:disabled) { border-color: var(--accent); transform: translateY(-2px); }
+.shape-btn:active:not(:disabled) { transform: scale(.97); }
+.shape-btn.right { animation: jump .5s var(--ease); border-color: var(--green); background: color-mix(in srgb, var(--green) 18%, var(--surface)); }
+.shape-btn.wrong { animation: shake .4s; border-color: var(--danger); opacity: .45; }
+.shape-btn:disabled { cursor: default; }
+
+/* ---------- Clock Time ---------- */
+.clock { display: block; width: min(100%, 260px); margin: 4px auto 14px; filter: drop-shadow(0 14px 22px rgba(60, 40, 140, .18)); }
+.clock-face { fill: var(--surface); stroke: var(--border); stroke-width: 5; }
+.clock-num { font-family: var(--font-display); font-weight: 600; font-size: 17px; fill: var(--text); text-anchor: middle; dominant-baseline: central; }
+.tick { stroke: var(--muted); stroke-width: 1.6; opacity: .6; }
+.tick.big { stroke: var(--text); stroke-width: 3; opacity: 1; }
+.hand-h { stroke: var(--text); stroke-width: 7; stroke-linecap: round; transition: transform .5s var(--ease); }
+.hand-m { stroke: var(--accent); stroke-width: 4.5; stroke-linecap: round; transition: transform .5s var(--ease); }
+.clock-dot { fill: var(--accent); stroke: var(--surface); stroke-width: 3; }
+.answers .answer.time { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+
+/* ---------- Odd One Out ---------- */
+.odd-board { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin: 8px 0 10px; }
+.odd-item {
+  width: 86px;
+  height: 86px;
+  padding: 0;
+  border: 2px solid var(--border);
+  border-radius: 24px;
+  background: var(--surface-2);
+  font-size: 2.8rem;
+  line-height: 1;
+  animation: rise .35s var(--ease) both;
+  transition: transform .15s var(--ease), border-color .2s, background-color .2s;
+}
+.odd-item:hover:not(:disabled) { border-color: var(--accent); transform: translateY(-3px); }
+.odd-item:active:not(:disabled) { transform: scale(.95); }
+.odd-item.right { animation: jump .5s var(--ease); border-color: var(--green); background: color-mix(in srgb, var(--green) 20%, var(--surface)); }
+.odd-item.wrong { animation: shake .4s; border-color: var(--danger); opacity: .45; }
+.odd-item:disabled { cursor: default; }
+
+@media (max-width: 420px) {
+  .pat-item { width: 50px; height: 50px; font-size: 1.6rem; }
+  .odd-item { width: 70px; height: 70px; font-size: 2.2rem; }
+}

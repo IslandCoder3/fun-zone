@@ -15,7 +15,13 @@
     { id: 'memory-win', icon: '🧠', name: 'Memory Master',   desc: 'Finish a Memory Match game',      test: function (p) { return (p.stats.memoryWins || 0) >= 1; } },
     { id: 'words-5',    icon: '🔤', name: 'Word Wizard',     desc: 'Spell 5 words',                   test: function (p) { return (p.stats.words || 0) >= 5; } },
     { id: 'count-10',   icon: '🔢', name: 'Counting Champ',  desc: 'Count 10 groups correctly',       test: function (p) { return (p.stats.counts || 0) >= 10; } },
-    { id: 'mixes-5',    icon: '🎨', name: 'Color Explorer',  desc: 'Try all 5 magic mixes',           test: function (p) { return (p.stats.mixes || 0) >= 5; } }
+    { id: 'mixes-5',    icon: '🎨', name: 'Color Explorer',  desc: 'Try all 5 magic mixes',           test: function (p) { return (p.stats.mixes || 0) >= 5; } },
+    { id: 'echo-5',     icon: '🎵', name: 'Sharp Ears',      desc: 'Reach round 5 in Echo',           test: function (p) { return (p.stats.echoRounds || 0) >= 5; } },
+    { id: 'patterns-10',icon: '🧩', name: 'Pattern Pro',     desc: 'Complete 10 patterns',            test: function (p) { return (p.stats.patterns || 0) >= 10; } },
+    { id: 'shapes-10',  icon: '🔷', name: 'Shape Spotter',   desc: 'Find 10 shapes',                  test: function (p) { return (p.stats.shapes || 0) >= 10; } },
+    { id: 'clock-10',   icon: '⏰', name: 'Time Keeper',     desc: 'Read the clock 10 times',         test: function (p) { return (p.stats.clocks || 0) >= 10; } },
+    { id: 'odd-10',     icon: '🔍', name: 'Sharp Eye',       desc: 'Spot 10 odd ones out',            test: function (p) { return (p.stats.odd || 0) >= 10; } },
+    { id: 'explorer',   icon: '🧭', name: 'Explorer',        desc: 'Visit every game',                test: function (p) { return Object.keys(p.stats).filter(function (k) { return k.indexOf('visit_') === 0; }).length >= 10; } }
   ];
 
   var stars = 0;
@@ -172,11 +178,21 @@
     return stats[name] || 0;
   }
 
+  function visit(id) {
+    var key = 'visit_' + id;
+    if (!stats[key]) {
+      stats[key] = 1;
+      persist();
+      checkBadges();
+    }
+  }
+
   function reset() {
     stars = 0;
     badges = {};
     stats = {};
     S.set('bestMoves', null);
+    S.set('echoBest', null);
     persist();
     render();
   }
@@ -188,6 +204,6 @@
 
   FunZone.progress = {
     init: init, addStars: addStars, bump: bump, setMax: setMax,
-    getStat: getStat, reset: reset, toast: toast
+    getStat: getStat, visit: visit, reset: reset, toast: toast
   };
 })();
