@@ -4,7 +4,7 @@ A multi-page, interactive learning playground for kids — 10 hands-on games cov
 
 **Category:** Education / Kids
 
-**Live site:** _Add your deployed URL here_
+**Live site:** https://islandcoder3.github.io/fun-zone/
 
 **Built with:** HTML, CSS, JavaScript
 
