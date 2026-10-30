@@ -123,6 +123,7 @@
       btn.classList.add('wrong');
       btn.disabled = true;
       FunZone.audio.sfx.bad();
+      FunZone.progress.miss();
       fb.textContent = 'Check the short and long hands!';
     }
   }

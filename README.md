@@ -1,6 +1,6 @@
 # Fun Zone
 
-A multi-page, interactive learning playground for kids — 10 hands-on games covering math, memory, color, spelling, counting, listening, patterns, shapes, telling time, and logic, with levels, stars, and unlockable badges that reward every correct answer.
+A multi-page, interactive learning playground for kids — 10 hands-on games covering math, memory, color, spelling, counting, listening, patterns, shapes, telling time, and logic, with daily streaks, a daily challenge, collectible stickers, and unlockable badges that keep kids coming back.
 
 **Category:** Education / Kids
 
@@ -10,7 +10,7 @@ A multi-page, interactive learning playground for kids — 10 hands-on games cov
 
 ## About
 
-Built as a playful, screen-friendly alternative to worksheets. Every game gives kids instant feedback with sound, animation, and encouragement, and rewards progress with stars that fill a level bar. Games are grouped by skill, and most offer Easy, Medium, and Hard levels so the same game grows with the child. A home page ties it all together with a game picker and a badge shelf that shows what has been unlocked so far.
+Built as a playful, screen-friendly alternative to worksheets. Every game gives kids instant feedback with sound, animation, and encouragement, and rewards progress with stars that fill a level bar. A friendly fox named Zippy greets each player by name, sets a daily goal, and nudges them toward the next thing to try. Games are grouped by skill, and most offer Easy, Medium, and Hard levels so the same game grows with the child. A home page ties it all together with a game picker and a badge shelf that shows what has been unlocked so far.
 
 ## Games
 
@@ -31,7 +31,13 @@ Built as a playful, screen-friendly alternative to worksheets. Every game gives 
 
 - Ten games with a home page game picker and hash-based navigation (the browser back button works)
 - Three difficulty levels in most games
-- Stars, a level progress bar, and 14 unlockable badges with toast notifications and confetti
+- Player profile: kids pick a name and a buddy on their first visit (stored only on the device)
+- Daily streak (days in a row), a daily star goal with a bonus, and a rotating Daily Challenge game where stars count double
+- Combo meter that rewards long runs of correct answers with bonus stars
+- Collectible sticker book (24 stickers) earned from level-ups, daily goals, challenges, and badges
+- Stars, a level progress bar, and 16 unlockable badges with celebration pop-ups, toasts, and confetti
+- Zippy the mascot gives personalized tips based on streak, goal, and games not yet tried
+- "New" tags on games that have not been played, plus a Continue button to jump back in
 - Light and dark themes that follow the device setting until changed
 - Sound effects, musical notes, and read-aloud words with a one-tap mute
 - Responsive layout: sidebar on desktop, scrollable bottom tab bar on phones
@@ -51,11 +57,13 @@ css/
   layout.css       app shell, sidebar, top bar, home page, responsive rules
   components.css   buttons, chips, segmented control, cards, badges, toasts, confetti
   games.css        styles for each game
+  engage.css       streak and combo chips, mascot card, sticker book, dialogs
 js/
   store.js         saved settings and progress (localStorage)
   utils.js         helpers: $, rand, pick, shuffle, confetti
   audio.js         sound effects, notes, and text-to-speech
-  progress.js      stars, levels, badges, toasts
+  ui.js            celebration pop-ups and the player profile dialog
+  progress.js      stars, levels, streaks, daily goal and challenge, stickers, badges, toasts
   app.js           router, theme, sound toggle, reset, start-up
   games/           math, memory, color, spell, count, echo, pattern, shape, clock, odd
 ```
@@ -71,6 +79,7 @@ js/
 ## Customizing
 
 - Accent colors: `css/base.css` (`--violet`, `--pink`, `--amber`, `--green`, `--sky`, `--coral`, `--teal`, `--indigo`, `--lime`)
-- Stars needed per level: `STARS_PER_LEVEL` in `js/progress.js`
+- Stars needed per level, the daily goal, challenge target, and bonus sizes: constants at the top of `js/progress.js`
+- Sticker emoji: `STICKERS` in `js/progress.js`
 - Spelling words: `WORDS` in `js/games/spell.js`
 - Odd One Out groups: `GROUPS` in `js/games/odd.js`

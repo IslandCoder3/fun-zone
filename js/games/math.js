@@ -79,6 +79,7 @@
       streak = 0;
       U.$('#streak').textContent = 0;
       FunZone.audio.sfx.bad();
+      FunZone.progress.miss();
       fb.textContent = 'Not quite. Try again!';
     }
   }

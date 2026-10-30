@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/games.css">
+  <link rel="stylesheet" href="css/engage.css">
 </head>
 <body>
 
@@ -119,6 +120,12 @@
           </div>
         </div>
 
+        <div class="chip chip-streak" id="streakChip" title="Days in a row">
+          <span aria-hidden="true">🔥</span> <span id="streakCount">0</span>
+        </div>
+        <div class="chip chip-combo" id="comboChip" title="Answers in a row" hidden>
+          <span aria-hidden="true">⚡</span> <span id="comboCount">0</span>
+        </div>
         <div class="chip chip-stars" id="starsChip" aria-live="polite">
           <svg class="icon icon-fill"><use href="#i-star"/></svg>
           <span id="starCount">0</span>
@@ -130,6 +137,9 @@
         <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle light and dark theme">
           <svg class="icon"><use id="themeIcon" href="#i-moon"/></svg>
         </button>
+        <button class="player-btn" id="playerBtn" type="button" aria-label="Change your name and buddy">
+          <span id="playerAvatar" aria-hidden="true">🐼</span><span class="player-name" id="playerName">Explorer</span>
+        </button>
       </header>
 
       <main id="main" tabindex="-1">
@@ -139,7 +149,7 @@
           <div class="hero">
             <div class="hero-text">
               <p class="eyebrow">Learn · Play · Grow</p>
-              <h1>Ready to play, <span class="hero-accent">explorer?</span></h1>
+              <h1 id="heroTitle">Ready to play, <span class="hero-accent">explorer?</span></h1>
               <p>Pick a game, earn stars, level up and unlock shiny badges along the way.</p>
               <a class="btn btn-light" href="#math">Start with Math Pop <svg class="icon"><use href="#i-arrow"/></svg></a>
             </div>
@@ -147,6 +157,20 @@
               <span class="orb orb-1">🚀</span>
               <span class="orb orb-2">🌈</span>
               <span class="orb orb-3">🧩</span>
+            </div>
+          </div>
+
+          <div class="mascot-card">
+            <div class="mascot" aria-hidden="true">🦊</div>
+            <div class="mascot-body">
+              <p class="mascot-name">Zippy says</p>
+              <p class="mascot-text" id="mascotText">Hi! Tap any game to earn your first star.</p>
+              <div class="goal-head"><span>Daily goal</span><b id="goalText">0 / 15 ⭐</b></div>
+              <div class="goal-bar" role="progressbar" aria-label="Daily goal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="goalFill"></span></div>
+            </div>
+            <div class="mascot-actions">
+              <a class="btn btn-primary" id="challengeBtn" href="#math">Today's challenge</a>
+              <a class="btn btn-soft" id="continueBtn" href="#math" hidden>Continue</a>
             </div>
           </div>
 
@@ -239,6 +263,13 @@
             <span class="badge-count" id="badgeCount">0 / 0</span>
           </div>
           <div class="badge-grid" id="badgeGrid"></div>
+
+          <div class="section-head">
+            <h2 class="section-title">Sticker book</h2>
+            <span class="badge-count" id="stickerCount">0 / 0 collected</span>
+          </div>
+          <p class="section-sub">Level up, hit your daily goal and finish challenges to collect them all.</p>
+          <div class="sticker-grid" id="stickerGrid"></div>
         </section>
 
         <!-- MATH -->
@@ -508,11 +539,38 @@
     </div>
   </div>
 
+  <dialog class="modal" id="celebrateDialog" aria-labelledby="celebrateTitle">
+    <div class="modal-card">
+      <div class="modal-emoji" id="celebrateEmoji" aria-hidden="true">🎉</div>
+      <h2 class="modal-title" id="celebrateTitle">Great job!</h2>
+      <p class="modal-text" id="celebrateText"></p>
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="celebrateBtn" type="button">Awesome!</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="profileDialog" aria-labelledby="profileTitle">
+    <form class="modal-card" id="profileForm">
+      <div class="modal-emoji" id="profilePreview" aria-hidden="true">🐼</div>
+      <h2 class="modal-title" id="profileTitle">Who's playing?</h2>
+      <p class="modal-text">Pick a name and a buddy. Everything stays on this device.</p>
+      <label class="field"><span>Your name</span>
+        <input id="nameInput" type="text" maxlength="14" autocomplete="off" placeholder="Explorer">
+      </label>
+      <div class="avatar-grid" id="avatarGrid" role="group" aria-label="Choose your buddy"></div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="profileSave" type="submit">Let's play!</button>
+      </div>
+    </form>
+  </dialog>
+
   <div class="toasts" id="toasts" aria-live="polite"></div>
 
   <script src="js/store.js" defer></script>
   <script src="js/utils.js" defer></script>
   <script src="js/audio.js" defer></script>
+  <script src="js/ui.js" defer></script>
   <script src="js/progress.js" defer></script>
   <script src="js/games/math.js" defer></script>
   <script src="js/games/memory.js" defer></script>

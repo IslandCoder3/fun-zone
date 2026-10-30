@@ -90,6 +90,7 @@
       setTimeout(nextWord, 1800);
     } else {
       FunZone.audio.sfx.bad();
+      FunZone.progress.miss();
       fb.textContent = 'Not quite. Try again!';
       var slots = U.$('#slots');
       slots.classList.add('shake');

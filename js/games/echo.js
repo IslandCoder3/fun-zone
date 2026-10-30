@@ -81,6 +81,7 @@
       accepting = false;
       runId++;
       FunZone.audio.sfx.bad();
+      FunZone.progress.miss();
       U.$('#echoFb').textContent = 'Oops! You completed ' + (round - 1) + (round - 1 === 1 ? ' round.' : ' rounds.');
       U.$('#echoStartLabel').textContent = 'Play again';
     }

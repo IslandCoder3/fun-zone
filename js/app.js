@@ -17,6 +17,7 @@
       var id = (location.hash || '#home').slice(1);
       if (ROUTES.indexOf(id) === -1) id = 'home';
       if (id !== 'home') FunZone.progress.visit(id);
+      FunZone.progress.setCurrent(id === 'home' ? null : id);
 
       var title = 'Fun Zone';
       views.forEach(function (v) {
@@ -87,6 +88,7 @@
   }
 
   function start() {
+    FunZone.ui.init();
     FunZone.progress.init();
     initTheme();
     initControls();
